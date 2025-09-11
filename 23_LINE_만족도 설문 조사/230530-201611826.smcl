@@ -1,0 +1,521 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\PCA-07\Desktop\230530-201611826.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}30 May 2023, 15:03:45
+
+{com}. {txt}*(84 variables, 150 observations pasted into data editor)
+{com}
+. alpha g1-g2, item>0.6
+{err}option > not allowed
+{txt}{search r(198):r(198);}
+
+{com}. alpha g1-g2, item
+
+{txt}Test scale = mean(unstandardized items)
+
+Average interitem covariance:{col 34}{res} 2.217305
+{txt}Number of items in the scale:{col 34}{res}        2
+{txt}Scale reliability coefficient:{col 34}{res}   0.8764
+
+{com}. alpha g3-g11, item
+
+{txt}Test scale = mean(unstandardized items)
+
+                                                            average
+                             item-test     item-rest       interitem
+Item         {c |}  Obs  Sign   correlation   correlation     covariance      alpha
+{hline 13}{c +}{hline 65}
+g3{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.7029{col 45} 0.6248{col 59} 1.077197{col 73} 0.8991
+{txt}g4{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.7199{col 45} 0.6312{col 59} 1.039383{col 73} 0.8990
+{txt}g5{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.7921{col 45} 0.7215{col 59} 1.000807{col 73} 0.8920
+{txt}g6{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.8012{col 45} 0.7295{col 59}  .984853{col 73} 0.8915
+{txt}g7{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.8190{col 45} 0.7611{col 59} 1.004422{col 73} 0.8892
+{txt}g8{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.7132{col 45} 0.6351{col 59} 1.067825{col 73} 0.8984
+{txt}g9{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.6945{col 45} 0.5973{col 59} 1.047827{col 73} 0.9018
+{txt}g10{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.8030{col 45} 0.7481{col 59} 1.037376{col 73} 0.8910
+{txt}g11{col 14}{c |}{res}{col 16} 150{col 24}+{col 31} 0.7668{col 45} 0.6985{col 59} 1.038185{col 73} 0.8939
+{txt}{hline 13}{c +}{hline 65}
+Test scale{col 14}{c |}{res}{col 59} 1.033097{col 73} 0.9057
+{txt}{hline 13}{c BT}{hline 65}
+
+{com}. factortest g1-g12, minigen(1.0)
+{err}options not allowed
+{txt}{search r(101):r(101);}
+
+{com}. factortest g1-g12, mineigen(1.0)
+{err}options not allowed
+{txt}{search r(101):r(101);}
+
+{com}. egen float sat_price = rowmean(g1-g2)
+
+. egen float sat_qual = rowmean(g3-g12)
+
+. pwcorr f3 sat_price sat_qual
+
+             {txt}{c |}       f3 sat_pr~e sat_qual
+{hline 13}{c +}{hline 27}
+          f3 {c |} {res}  1.0000 
+   {txt}sat_price {c |} {res} -0.2449   1.0000 
+    {txt}sat_qual {c |} {res}  0.0924   0.2535   1.0000 
+
+{com}. reg f3 sat_price sat_qual
+
+      {txt}Source {c |}       SS       df       MS              Number of obs ={res}     150
+{txt}{hline 13}{char +}{hline 30}           F(  2,   147) ={res}    6.87
+    {txt}   Model {char |} {res}  23.154932     2   11.577466           {txt}Prob > F      = {res} 0.0014
+    {txt}Residual {char |} {res} 247.678401   147  1.68488708           {txt}R-squared     = {res} 0.0855
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.0731
+    {txt}   Total {char |} {res} 270.833333   149  1.81767338           {txt}Root MSE      = {res}  1.298
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          f3{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2}-.2436598{col 26}{space 2} .0692745{col 37}{space 1}   -3.52{col 46}{space 3}0.001{col 54}{space 4}-.3805624{col 67}{space 3}-.1067571
+{txt}{space 4}sat_qual {c |}{col 14}{res}{space 2} .2095945{col 26}{space 2} .1035321{col 37}{space 1}    2.02{col 46}{space 3}0.045{col 54}{space 4}  .004991{col 67}{space 3}  .414198
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 3.328971{col 26}{space 2} .5501298{col 37}{space 1}    6.05{col 46}{space 3}0.000{col 54}{space 4} 2.241787{col 67}{space 3} 4.416156
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. egen float sat_qual = rowmean(g3-g11)
+{err}sat_qual already defined
+{txt}{search r(110):r(110);}
+
+{com}. egen float sat_qual = rowmean(g3-g11)
+{err}sat_qual already defined
+{txt}{search r(110):r(110);}
+
+{com}. egen float sat_qualI = rowmean(g3-g11)
+
+. recode f3 (1=1000)(2=3000)(3=5000)(4=7000)(5=9000)(6=11000), gen(new_f3)
+{txt}(150 differences between f3 and new_f3)
+
+{com}. pwcorr new_f3 sat_price sat_quali
+{err}variable sat_quali not found
+{txt}{search r(111):r(111);}
+
+{com}. pwcorr new_f3 sat_price sat_qualI
+
+             {txt}{c |}   new_f3 sat_pr~e sat_qu~I
+{hline 13}{c +}{hline 27}
+      new_f3 {c |} {res}  1.0000 
+   {txt}sat_price {c |} {res} -0.2449   1.0000 
+   {txt}sat_qualI {c |} {res}  0.0969   0.2576   1.0000 
+
+{com}. reg new_f3 sat_price sat_qualI
+
+      {txt}Source {c |}       SS       df       MS              Number of obs ={res}     150
+{txt}{hline 13}{char +}{hline 30}           F(  2,   147) ={res}    7.04
+    {txt}   Model {char |} {res} 94718557.6     2  47359278.8           {txt}Prob > F      = {res} 0.0012
+    {txt}Residual {char |} {res}  988614776   147  6725270.58           {txt}R-squared     = {res} 0.0874
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.0750
+    {txt}   Total {char |} {res} 1.0833e+09   149  7270693.51           {txt}Root MSE      = {res} 2593.3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_f3{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2}-491.2378{col 26}{space 2} 138.5561{col 37}{space 1}   -3.55{col 46}{space 3}0.001{col 54}{space 4} -765.057{col 67}{space 3}-217.4185
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} 432.7787{col 26}{space 2} 205.8718{col 37}{space 1}    2.10{col 46}{space 3}0.037{col 54}{space 4} 25.92796{col 67}{space 3} 839.6293
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5606.314{col 26}{space 2}  1093.63{col 37}{space 1}    5.13{col 46}{space 3}0.000{col 54}{space 4} 3445.045{col 67}{space 3} 7767.583
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. estat vif
+
+{txt}    Variable {c |}       VIF       1/VIF  
+{hline 13}{c +}{hline 22}
+{space 3}sat_price {c |} {res}     1.07    0.933654
+{txt}{space 3}sat_qualI {c |} {res}     1.07    0.933654
+{txt}{hline 13}{c +}{hline 22}
+    Mean VIF {c |} {res}     1.07
+
+{com}. encode gender, gen(new_gender)
+
+. reg new_f3 sat_price sat_qualI if new_gender==1
+
+      {txt}Source {c |}       SS       df       MS              Number of obs ={res}      77
+{txt}{hline 13}{char +}{hline 30}           F(  2,    74) ={res}    3.23
+    {txt}   Model {char |} {res}   38385552     2    19192776           {txt}Prob > F      = {res} 0.0451
+    {txt}Residual {char |} {res}  439328734    74  5936874.78           {txt}R-squared     = {res} 0.0804
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.0555
+    {txt}   Total {char |} {res}  477714286    76  6285714.29           {txt}Root MSE      = {res} 2436.6
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_f3{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2}-336.3043{col 26}{space 2} 195.0931{col 37}{space 1}   -1.72{col 46}{space 3}0.089{col 54}{space 4}-725.0358{col 67}{space 3} 52.42712
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} 609.3827{col 26}{space 2} 270.1322{col 37}{space 1}    2.26{col 46}{space 3}0.027{col 54}{space 4} 71.13258{col 67}{space 3} 1147.633
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 3911.529{col 26}{space 2} 1473.255{col 37}{space 1}    2.66{col 46}{space 3}0.010{col 54}{space 4} 976.0035{col 67}{space 3} 6847.054
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. reg new_f3 sat_price sat_qualI if new_gender==2
+
+      {txt}Source {c |}       SS       df       MS              Number of obs ={res}      73
+{txt}{hline 13}{char +}{hline 30}           F(  2,    70) ={res}    4.43
+    {txt}   Model {char |} {res}   67453292     2    33726646           {txt}Prob > F      = {res} 0.0154
+    {txt}Residual {char |} {res}  532985064    70  7614072.34           {txt}R-squared     = {res} 0.1123
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.0870
+    {txt}   Total {char |} {res}  600438356    72  8339421.61           {txt}Root MSE      = {res} 2759.4
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_f3{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2} -610.446{col 26}{space 2} 205.1333{col 37}{space 1}   -2.98{col 46}{space 3}0.004{col 54}{space 4}-1019.571{col 67}{space 3}-201.3206
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} 234.4102{col 26}{space 2}  315.298{col 37}{space 1}    0.74{col 46}{space 3}0.460{col 54}{space 4}-394.4319{col 67}{space 3} 863.2522
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}   7170.9{col 26}{space 2} 1638.525{col 37}{space 1}    4.38{col 46}{space 3}0.000{col 54}{space 4} 3902.965{col 67}{space 3} 10438.83
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. reg new_f3 sat_price sat_qualI i.new_gender
+
+      {txt}Source {c |}       SS       df       MS              Number of obs ={res}     150
+{txt}{hline 13}{char +}{hline 30}           F(  3,   146) ={res}    4.67
+    {txt}   Model {char |} {res}   94914909     3    31638303           {txt}Prob > F      = {res} 0.0038
+    {txt}Residual {char |} {res}  988418424   146  6769989.21           {txt}R-squared     = {res} 0.0876
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.0689
+    {txt}   Total {char |} {res} 1.0833e+09   149  7270693.51           {txt}Root MSE      = {res} 2601.9
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_f3{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2}-486.5376{col 26}{space 2} 141.7291{col 37}{space 1}   -3.43{col 46}{space 3}0.001{col 54}{space 4}-766.6434{col 67}{space 3}-206.4318
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2}  430.422{col 26}{space 2} 207.0181{col 37}{space 1}    2.08{col 46}{space 3}0.039{col 54}{space 4} 21.28261{col 67}{space 3} 839.5614
+{txt}2.new_gender {c |}{col 14}{res}{space 2} 73.80851{col 26}{space 2} 433.3945{col 37}{space 1}    0.17{col 46}{space 3}0.865{col 54}{space 4}-782.7288{col 67}{space 3} 930.3458
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5560.081{col 26}{space 2} 1130.344{col 37}{space 1}    4.92{col 46}{space 3}0.000{col 54}{space 4} 3326.131{col 67}{space 3} 7794.032
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. reg new_f3 sat_price sat_qualI i_service
+{err}variable i_service not found
+{txt}{search r(111):r(111);}
+
+{com}. reg new_f3 sat_price sat_qualI i.service
+
+      {txt}Source {c |}       SS       df       MS              Number of obs ={res}     150
+{txt}{hline 13}{char +}{hline 30}           F( 13,   136) ={res}    2.34
+    {txt}   Model {char |} {res}  198276661    13  15252050.8           {txt}Prob > F      = {res} 0.0075
+    {txt}Residual {char |} {res}  885056673   136  6507769.65           {txt}R-squared     = {res} 0.1830
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.1049
+    {txt}   Total {char |} {res} 1.0833e+09   149  7270693.51           {txt}Root MSE      = {res}   2551
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_f3{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2} -401.667{col 26}{space 2} 160.5605{col 37}{space 1}   -2.50{col 46}{space 3}0.014{col 54}{space 4}-719.1852{col 67}{space 3}-84.14891
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} 231.8159{col 26}{space 2} 235.4195{col 37}{space 1}    0.98{col 46}{space 3}0.327{col 54}{space 4}-233.7405{col 67}{space 3} 697.3723
+{txt}{space 12} {c |}
+{space 5}service {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-994.5291{col 26}{space 2} 579.0296{col 37}{space 1}   -1.72{col 46}{space 3}0.088{col 54}{space 4}-2139.595{col 67}{space 3}  150.537
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 7.382044{col 26}{space 2}  1240.52{col 37}{space 1}    0.01{col 46}{space 3}0.995{col 54}{space 4}-2445.822{col 67}{space 3} 2460.586
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}  216.592{col 26}{space 2}  1020.31{col 37}{space 1}    0.21{col 46}{space 3}0.832{col 54}{space 4}-1801.132{col 67}{space 3} 2234.316
+{txt}{space 10}5  {c |}{col 14}{res}{space 2}-2151.818{col 26}{space 2} 1563.102{col 37}{space 1}   -1.38{col 46}{space 3}0.171{col 54}{space 4}-5242.948{col 67}{space 3} 939.3122
+{txt}{space 10}6  {c |}{col 14}{res}{space 2} 4224.968{col 26}{space 2} 1883.746{col 37}{space 1}    2.24{col 46}{space 3}0.027{col 54}{space 4} 499.7454{col 67}{space 3} 7950.191
+{txt}{space 10}8  {c |}{col 14}{res}{space 2}-149.4241{col 26}{space 2} 929.0378{col 37}{space 1}   -0.16{col 46}{space 3}0.872{col 54}{space 4}-1986.653{col 67}{space 3} 1687.805
+{txt}{space 10}9  {c |}{col 14}{res}{space 2} 426.6671{col 26}{space 2} 2647.954{col 37}{space 1}    0.16{col 46}{space 3}0.872{col 54}{space 4}-4809.823{col 67}{space 3} 5663.157
+{txt}{space 9}10  {c |}{col 14}{res}{space 2}-1058.186{col 26}{space 2} 2799.154{col 37}{space 1}   -0.38{col 46}{space 3}0.706{col 54}{space 4}-6593.684{col 67}{space 3} 4477.311
+{txt}{space 9}11  {c |}{col 14}{res}{space 2} -1405.21{col 26}{space 2} 863.3857{col 37}{space 1}   -1.63{col 46}{space 3}0.106{col 54}{space 4}-3112.608{col 67}{space 3} 302.1878
+{txt}{space 9}12  {c |}{col 14}{res}{space 2} 62.24945{col 26}{space 2} 1507.345{col 37}{space 1}    0.04{col 46}{space 3}0.967{col 54}{space 4}-2918.616{col 67}{space 3} 3043.115
+{txt}{space 9}13  {c |}{col 14}{res}{space 2}-2718.729{col 26}{space 2} 1313.498{col 37}{space 1}   -2.07{col 46}{space 3}0.040{col 54}{space 4}-5316.251{col 67}{space 3}-121.2069
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 6535.011{col 26}{space 2} 1173.105{col 37}{space 1}    5.57{col 46}{space 3}0.000{col 54}{space 4} 4215.124{col 67}{space 3} 8854.897
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. recode h1(1=1)(2=0), gen(new_h1)
+{txt}(21 differences between h1 and new_h1)
+
+{com}. tab new_h1
+
+  {txt}RECODE of {c |}
+         h1 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}         21       14.00       14.00
+{txt}          1 {c |}{res}        129       86.00      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        150      100.00
+
+{com}. logit new_h1 sat_price sat_qualI
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-60.744523}  
+Iteration 1:{space 3}log likelihood = {res:-55.950382}  
+Iteration 2:{space 3}log likelihood = {res:-55.618378}  
+Iteration 3:{space 3}log likelihood = {res:-55.617642}  
+Iteration 4:{space 3}log likelihood = {res:-55.617642}  
+{res}
+{txt}Logistic regression{col 51}Number of obs{col 67}= {res}       150
+{txt}{col 51}LR chi2({res}2{txt}){col 67}= {res}     10.25
+{txt}{col 51}Prob > chi2{col 67}= {res}    0.0059
+{txt}Log likelihood = {res}-55.617642{txt}{col 51}Pseudo R2{col 67}= {res}    0.0844
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_h1{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2} .1728468{col 26}{space 2} .1585628{col 37}{space 1}    1.09{col 46}{space 3}0.276{col 54}{space 4}-.1379305{col 67}{space 3} .4836242
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} .6505309{col 26}{space 2} .2506852{col 37}{space 1}    2.60{col 46}{space 3}0.009{col 54}{space 4}  .159197{col 67}{space 3} 1.141865
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-2.054617{col 26}{space 2} 1.253381{col 37}{space 1}   -1.64{col 46}{space 3}0.101{col 54}{space 4}-4.511198{col 67}{space 3} .4019648
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit new_h1 sat_price sat_qualI, or
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-60.744523}  
+Iteration 1:{space 3}log likelihood = {res:-55.950382}  
+Iteration 2:{space 3}log likelihood = {res:-55.618378}  
+Iteration 3:{space 3}log likelihood = {res:-55.617642}  
+Iteration 4:{space 3}log likelihood = {res:-55.617642}  
+{res}
+{txt}Logistic regression{col 51}Number of obs{col 67}= {res}       150
+{txt}{col 51}LR chi2({res}2{txt}){col 67}= {res}     10.25
+{txt}{col 51}Prob > chi2{col 67}= {res}    0.0059
+{txt}Log likelihood = {res}-55.617642{txt}{col 51}Pseudo R2{col 67}= {res}    0.0844
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_h1{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2} 1.188684{col 26}{space 2} .1884811{col 37}{space 1}    1.09{col 46}{space 3}0.276{col 54}{space 4} .8711592{col 67}{space 3} 1.621942
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} 1.916558{col 26}{space 2} .4804528{col 37}{space 1}    2.60{col 46}{space 3}0.009{col 54}{space 4} 1.172569{col 67}{space 3} 3.132605
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. margins, dydx(sat_price sat_qualI)
+{res}
+{txt}Average marginal effects{col 51}Number of obs{col 67}= {res}       150
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(new_h1), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:sat_price sat_qualI}{p_end}
+{p2colreset}{...}
+
+{col 1}{text}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{col 14}{text}{c |}{col 14}            Delta-method
+{col 14}{text}{c |}      dy/dx{col 26}   Std. Err.{col 37}      z{col 46}   P>|z|{col 55}    [95% Conf. Interval]
+{col 1}{text}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{space 3}sat_price {c |}{col 14}{result}{space 2} .0192808{col 26}{space 2} .0176227{col 37}{space 1}    1.09{col 46}{space 3}0.274{col 55}{space 3}-.0152591{col 67}{space 3} .0538207
+{txt}{space 3}sat_qualI {c |}{col 14}{result}{space 2} .0725657{col 26}{space 2} .0272686{col 37}{space 1}    2.66{col 46}{space 3}0.008{col 55}{space 3} .0191202{col 67}{space 3} .1260112
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+
+{com}. logit new_h1 sat_price sat_qualI i.service
+
+{txt}note: 3.service != 0 predicts success perfectly
+      3.service dropped and 5 obs not used
+
+note: 6.service != 0 predicts success perfectly
+      6.service dropped and 2 obs not used
+
+note: 9.service != 0 predicts success perfectly
+      9.service dropped and 1 obs not used
+
+note: 10.service != 0 predicts success perfectly
+      10.service dropped and 1 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-59.341164}  
+Iteration 1:{space 3}log likelihood = {res: -47.30982}  
+Iteration 2:{space 3}log likelihood = {res:-44.419077}  
+Iteration 3:{space 3}log likelihood = {res:-44.351473}  
+Iteration 4:{space 3}log likelihood = {res:-44.351309}  
+Iteration 5:{space 3}log likelihood = {res:-44.351309}  
+{res}
+{txt}Logistic regression{col 51}Number of obs{col 67}= {res}       141
+{txt}{col 51}LR chi2({res}9{txt}){col 67}= {res}     29.98
+{txt}{col 51}Prob > chi2{col 67}= {res}    0.0004
+{txt}Log likelihood = {res}-44.351309{txt}{col 51}Pseudo R2{col 67}= {res}    0.2526
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_h1{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2} .2007024{col 26}{space 2} .2167043{col 37}{space 1}    0.93{col 46}{space 3}0.354{col 54}{space 4}-.2240302{col 67}{space 3} .6254349
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} .7884496{col 26}{space 2}  .348185{col 37}{space 1}    2.26{col 46}{space 3}0.024{col 54}{space 4} .1060195{col 67}{space 3}  1.47088
+{txt}{space 12} {c |}
+{space 5}service {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.2684402{col 26}{space 2} .9028288{col 37}{space 1}   -0.30{col 46}{space 3}0.766{col 54}{space 4}-2.037952{col 67}{space 3} 1.501072
+{txt}{space 10}3  {c |}{col 14}{res}  (empty)  
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}-2.095676{col 26}{space 2} .9358469{col 37}{space 1}   -2.24{col 46}{space 3}0.025{col 54}{space 4}-3.929902{col 67}{space 3}-.2614494
+{txt}{space 10}5  {c |}{col 14}{res}{space 2}-1.490322{col 26}{space 2} 1.459696{col 37}{space 1}   -1.02{col 46}{space 3}0.307{col 54}{space 4}-4.351274{col 67}{space 3}  1.37063
+{txt}{space 10}6  {c |}{col 14}{res}  (empty)  
+{txt}{space 10}8  {c |}{col 14}{res}{space 2}-3.069852{col 26}{space 2} .9899591{col 37}{space 1}   -3.10{col 46}{space 3}0.002{col 54}{space 4}-5.010136{col 67}{space 3}-1.129568
+{txt}{space 10}9  {c |}{col 14}{res}  (empty)  
+{txt}{space 9}10  {c |}{col 14}{res}  (empty)  
+{txt}{space 9}11  {c |}{col 14}{res}{space 2}-1.896069{col 26}{space 2} .8783814{col 37}{space 1}   -2.16{col 46}{space 3}0.031{col 54}{space 4}-3.617665{col 67}{space 3}-.1744733
+{txt}{space 9}12  {c |}{col 14}{res}{space 2} -1.95914{col 26}{space 2} 1.357553{col 37}{space 1}   -1.44{col 46}{space 3}0.149{col 54}{space 4}-4.619895{col 67}{space 3}  .701615
+{txt}{space 9}13  {c |}{col 14}{res}{space 2}-2.778129{col 26}{space 2} 1.318894{col 37}{space 1}   -2.11{col 46}{space 3}0.035{col 54}{space 4}-5.363115{col 67}{space 3}-.1931436
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-1.894041{col 26}{space 2} 1.536914{col 37}{space 1}   -1.23{col 46}{space 3}0.218{col 54}{space 4}-4.906337{col 67}{space 3} 1.118254
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit new_h1 sat_price sat_qualI i.service, or
+
+{txt}note: 3.service != 0 predicts success perfectly
+      3.service dropped and 5 obs not used
+
+note: 6.service != 0 predicts success perfectly
+      6.service dropped and 2 obs not used
+
+note: 9.service != 0 predicts success perfectly
+      9.service dropped and 1 obs not used
+
+note: 10.service != 0 predicts success perfectly
+      10.service dropped and 1 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-59.341164}  
+Iteration 1:{space 3}log likelihood = {res: -47.30982}  
+Iteration 2:{space 3}log likelihood = {res:-44.419077}  
+Iteration 3:{space 3}log likelihood = {res:-44.351473}  
+Iteration 4:{space 3}log likelihood = {res:-44.351309}  
+Iteration 5:{space 3}log likelihood = {res:-44.351309}  
+{res}
+{txt}Logistic regression{col 51}Number of obs{col 67}= {res}       141
+{txt}{col 51}LR chi2({res}9{txt}){col 67}= {res}     29.98
+{txt}{col 51}Prob > chi2{col 67}= {res}    0.0004
+{txt}Log likelihood = {res}-44.351309{txt}{col 51}Pseudo R2{col 67}= {res}    0.2526
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_h1{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sat_price {c |}{col 14}{res}{space 2} 1.222261{col 26}{space 2} .2648692{col 37}{space 1}    0.93{col 46}{space 3}0.354{col 54}{space 4}  .799291{col 67}{space 3} 1.869059
+{txt}{space 3}sat_qualI {c |}{col 14}{res}{space 2} 2.199983{col 26}{space 2} .7660011{col 37}{space 1}    2.26{col 46}{space 3}0.024{col 54}{space 4} 1.111844{col 67}{space 3} 4.353063
+{txt}{space 12} {c |}
+{space 5}service {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .7645712{col 26}{space 2} .6902769{col 37}{space 1}   -0.30{col 46}{space 3}0.766{col 54}{space 4} .1302953{col 67}{space 3} 4.486495
+{txt}{space 10}3  {c |}{col 14}{res}  (empty)  
+{txt}{space 10}4  {c |}{col 14}{res}{space 2} .1229871{col 26}{space 2} .1150971{col 37}{space 1}   -2.24{col 46}{space 3}0.025{col 54}{space 4} .0196456{col 67}{space 3} .7699348
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} .2253001{col 26}{space 2} .3288697{col 37}{space 1}   -1.02{col 46}{space 3}0.307{col 54}{space 4} .0128904{col 67}{space 3} 3.937831
+{txt}{space 10}6  {c |}{col 14}{res}  (empty)  
+{txt}{space 10}8  {c |}{col 14}{res}{space 2}  .046428{col 26}{space 2} .0459618{col 37}{space 1}   -3.10{col 46}{space 3}0.002{col 54}{space 4}   .00667{col 67}{space 3} .3231728
+{txt}{space 10}9  {c |}{col 14}{res}  (empty)  
+{txt}{space 9}10  {c |}{col 14}{res}  (empty)  
+{txt}{space 9}11  {c |}{col 14}{res}{space 2} .1501577{col 26}{space 2} .1318957{col 37}{space 1}   -2.16{col 46}{space 3}0.031{col 54}{space 4} .0268453{col 67}{space 3} .8398993
+{txt}{space 9}12  {c |}{col 14}{res}{space 2} .1409796{col 26}{space 2} .1913873{col 37}{space 1}   -1.44{col 46}{space 3}0.149{col 54}{space 4} .0098538{col 67}{space 3} 2.017008
+{txt}{space 9}13  {c |}{col 14}{res}{space 2} .0621547{col 26}{space 2} .0819755{col 37}{space 1}   -2.11{col 46}{space 3}0.035{col 54}{space 4} .0046863{col 67}{space 3} .8243636
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. margins, dydx(sat_price sat_qualI service)
+{res}
+{txt}Average marginal effects{col 51}Number of obs{col 67}= {res}       141
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(new_h1), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:sat_price sat_qualI 2.service 3.service 4.service 5.service 6.service 8.service 9.service 10.service 11.service 12.service 13.service}{p_end}
+{p2colreset}{...}
+
+{col 1}{text}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{col 14}{text}{c |}{col 14}            Delta-method
+{col 14}{text}{c |}      dy/dx{col 26}   Std. Err.{col 37}      z{col 46}   P>|z|{col 55}    [95% Conf. Interval]
+{col 1}{text}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{space 3}sat_price {c |}{col 14}{result}{space 2} .0191009{col 26}{space 2}  .020457{col 37}{space 1}    0.93{col 46}{space 3}0.350{col 55}{space 3}-.0209941{col 67}{space 3} .0591959
+{txt}{space 3}sat_qualI {c |}{col 14}{result}{space 2}  .075037{col 26}{space 2} .0317357{col 37}{space 1}    2.36{col 46}{space 3}0.018{col 55}{space 3} .0128362{col 67}{space 3} .1372378
+{txt}{space 12} {c |}
+{space 5}service {c |}
+{space 10}2  {c |}{col 14}{result}{space 2}-.0173302{col 26}{space 2} .0609872{col 37}{space 1}   -0.28{col 46}{space 3}0.776{col 55}{space 3}-.1368629{col 67}{space 3} .1022025
+{txt}{space 10}3  {c |}{col 14}{result}  (not estimable)
+{txt}{space 10}4  {c |}{col 14}{result}{space 2}-.2508729{col 26}{space 2} .1525533{col 37}{space 1}   -1.64{col 46}{space 3}0.100{col 55}{space 3}-.5498718{col 67}{space 3}  .048126
+{txt}{space 10}5  {c |}{col 14}{result}{space 2}-.1494929{col 26}{space 2} .2056942{col 37}{space 1}   -0.73{col 46}{space 3}0.467{col 55}{space 3}-.5526461{col 67}{space 3} .2536604
+{txt}{space 10}6  {c |}{col 14}{result}  (not estimable)
+{txt}{space 10}8  {c |}{col 14}{result}{space 2}-.4471363{col 26}{space 2} .1684793{col 37}{space 1}   -2.65{col 46}{space 3}0.008{col 55}{space 3}-.7773496{col 67}{space 3}-.1169231
+{txt}{space 10}9  {c |}{col 14}{result}  (not estimable)
+{txt}{space 9}10  {c |}{col 14}{result}  (not estimable)
+{txt}{space 9}11  {c |}{col 14}{result}{space 2}-.2150166{col 26}{space 2}  .128477{col 37}{space 1}   -1.67{col 46}{space 3}0.094{col 55}{space 3}-.4668269{col 67}{space 3} .0367937
+{txt}{space 9}12  {c |}{col 14}{result}{space 2}-.2261085{col 26}{space 2} .2277962{col 37}{space 1}   -0.99{col 46}{space 3}0.321{col 55}{space 3}-.6725808{col 67}{space 3} .2203637
+{txt}{space 9}13  {c |}{col 14}{result}{space 2}-.3863053{col 26}{space 2} .2546496{col 37}{space 1}   -1.52{col 46}{space 3}0.129{col 55}{space 3}-.8854093{col 67}{space 3} .1127988
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{p 0 6 2}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+
+{com}. recode c2(1=1)(2=0), gen(new_c2)
+{txt}(85 differences between c2 and new_c2)
+
+{com}. logit new_c2 a1-a12
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-102.63476}  
+Iteration 1:{space 3}log likelihood = {res:-91.663896}  
+Iteration 2:{space 3}log likelihood = {res:-91.627704}  
+Iteration 3:{space 3}log likelihood = {res:-91.627696}  
+{res}
+{txt}Logistic regression{col 51}Number of obs{col 67}= {res}       150
+{txt}{col 51}LR chi2({res}12{txt}){col 67}= {res}     22.01
+{txt}{col 51}Prob > chi2{col 67}= {res}    0.0374
+{txt}Log likelihood = {res}-91.627696{txt}{col 51}Pseudo R2{col 67}= {res}    0.1072
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_c2{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}a1 {c |}{col 14}{res}{space 2} .2856178{col 26}{space 2}  .141688{col 37}{space 1}    2.02{col 46}{space 3}0.044{col 54}{space 4} .0079144{col 67}{space 3} .5633212
+{txt}{space 10}a2 {c |}{col 14}{res}{space 2} .1071253{col 26}{space 2} .1040035{col 37}{space 1}    1.03{col 46}{space 3}0.303{col 54}{space 4}-.0967178{col 67}{space 3} .3109684
+{txt}{space 10}a3 {c |}{col 14}{res}{space 2}-.0347935{col 26}{space 2}  .159334{col 37}{space 1}   -0.22{col 46}{space 3}0.827{col 54}{space 4}-.3470824{col 67}{space 3} .2774954
+{txt}{space 10}a4 {c |}{col 14}{res}{space 2} .0109185{col 26}{space 2} .1461081{col 37}{space 1}    0.07{col 46}{space 3}0.940{col 54}{space 4}-.2754481{col 67}{space 3}  .297285
+{txt}{space 10}a5 {c |}{col 14}{res}{space 2} .2242632{col 26}{space 2} .1406859{col 37}{space 1}    1.59{col 46}{space 3}0.111{col 54}{space 4}-.0514761{col 67}{space 3} .5000025
+{txt}{space 10}a6 {c |}{col 14}{res}{space 2}-.0581189{col 26}{space 2} .1327708{col 37}{space 1}   -0.44{col 46}{space 3}0.662{col 54}{space 4}-.3183448{col 67}{space 3}  .202107
+{txt}{space 10}a7 {c |}{col 14}{res}{space 2}-.0534231{col 26}{space 2} .1248049{col 37}{space 1}   -0.43{col 46}{space 3}0.669{col 54}{space 4}-.2980361{col 67}{space 3} .1911899
+{txt}{space 10}a8 {c |}{col 14}{res}{space 2} .1596054{col 26}{space 2} .0927244{col 37}{space 1}    1.72{col 46}{space 3}0.085{col 54}{space 4} -.022131{col 67}{space 3} .3413419
+{txt}{space 10}a9 {c |}{col 14}{res}{space 2}-.1885852{col 26}{space 2} .0944645{col 37}{space 1}   -2.00{col 46}{space 3}0.046{col 54}{space 4}-.3737322{col 67}{space 3}-.0034382
+{txt}{space 9}a10 {c |}{col 14}{res}{space 2}-.0961202{col 26}{space 2}  .120175{col 37}{space 1}   -0.80{col 46}{space 3}0.424{col 54}{space 4} -.331659{col 67}{space 3} .1394185
+{txt}{space 9}a11 {c |}{col 14}{res}{space 2} .0512206{col 26}{space 2}  .144733{col 37}{space 1}    0.35{col 46}{space 3}0.723{col 54}{space 4}-.2324508{col 67}{space 3} .3348921
+{txt}{space 9}a12 {c |}{col 14}{res}{space 2}-.2070079{col 26}{space 2} .2055854{col 37}{space 1}   -1.01{col 46}{space 3}0.314{col 54}{space 4}-.6099479{col 67}{space 3} .1959322
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.190907{col 26}{space 2} .6935702{col 37}{space 1}   -1.72{col 46}{space 3}0.086{col 54}{space 4} -2.55028{col 67}{space 3} .1684654
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit new_c2 a1-a12, or
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-102.63476}  
+Iteration 1:{space 3}log likelihood = {res:-91.663896}  
+Iteration 2:{space 3}log likelihood = {res:-91.627704}  
+Iteration 3:{space 3}log likelihood = {res:-91.627696}  
+{res}
+{txt}Logistic regression{col 51}Number of obs{col 67}= {res}       150
+{txt}{col 51}LR chi2({res}12{txt}){col 67}= {res}     22.01
+{txt}{col 51}Prob > chi2{col 67}= {res}    0.0374
+{txt}Log likelihood = {res}-91.627696{txt}{col 51}Pseudo R2{col 67}= {res}    0.1072
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      new_c2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}a1 {c |}{col 14}{res}{space 2} 1.330584{col 26}{space 2} .1885278{col 37}{space 1}    2.02{col 46}{space 3}0.044{col 54}{space 4} 1.007946{col 67}{space 3} 1.756497
+{txt}{space 10}a2 {c |}{col 14}{res}{space 2} 1.113074{col 26}{space 2} .1157635{col 37}{space 1}    1.03{col 46}{space 3}0.303{col 54}{space 4} .9078122{col 67}{space 3} 1.364746
+{txt}{space 10}a3 {c |}{col 14}{res}{space 2} .9658048{col 26}{space 2} .1538855{col 37}{space 1}   -0.22{col 46}{space 3}0.827{col 54}{space 4} .7067471{col 67}{space 3}  1.31982
+{txt}{space 10}a4 {c |}{col 14}{res}{space 2} 1.010978{col 26}{space 2} .1477121{col 37}{space 1}    0.07{col 46}{space 3}0.940{col 54}{space 4} .7592318{col 67}{space 3} 1.346199
+{txt}{space 10}a5 {c |}{col 14}{res}{space 2}   1.2514{col 26}{space 2} .1760544{col 37}{space 1}    1.59{col 46}{space 3}0.111{col 54}{space 4} .9498264{col 67}{space 3} 1.648725
+{txt}{space 10}a6 {c |}{col 14}{res}{space 2} .9435378{col 26}{space 2} .1252742{col 37}{space 1}   -0.44{col 46}{space 3}0.662{col 54}{space 4}  .727352{col 67}{space 3} 1.223979
+{txt}{space 10}a7 {c |}{col 14}{res}{space 2} .9479788{col 26}{space 2} .1183124{col 37}{space 1}   -0.43{col 46}{space 3}0.669{col 54}{space 4} .7422745{col 67}{space 3} 1.210689
+{txt}{space 10}a8 {c |}{col 14}{res}{space 2} 1.173048{col 26}{space 2} .1087701{col 37}{space 1}    1.72{col 46}{space 3}0.085{col 54}{space 4} .9781121{col 67}{space 3} 1.406834
+{txt}{space 10}a9 {c |}{col 14}{res}{space 2} .8281299{col 26}{space 2} .0782289{col 37}{space 1}   -2.00{col 46}{space 3}0.046{col 54}{space 4} .6881612{col 67}{space 3} .9965677
+{txt}{space 9}a10 {c |}{col 14}{res}{space 2} .9083548{col 26}{space 2} .1091616{col 37}{space 1}   -0.80{col 46}{space 3}0.424{col 54}{space 4}  .717732{col 67}{space 3} 1.149605
+{txt}{space 9}a11 {c |}{col 14}{res}{space 2} 1.052555{col 26}{space 2} .1523394{col 37}{space 1}    0.35{col 46}{space 3}0.723{col 54}{space 4} .7925887{col 67}{space 3} 1.397789
+{txt}{space 9}a12 {c |}{col 14}{res}{space 2} .8130132{col 26}{space 2} .1671437{col 37}{space 1}   -1.01{col 46}{space 3}0.314{col 54}{space 4} .5433792{col 67}{space 3} 1.216444
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. margins, dydx(a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12)
+{res}
+{txt}Average marginal effects{col 51}Number of obs{col 67}= {res}       150
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(new_c2), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12}{p_end}
+{p2colreset}{...}
+
+{col 1}{text}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{col 14}{text}{c |}{col 14}            Delta-method
+{col 14}{text}{c |}      dy/dx{col 26}   Std. Err.{col 37}      z{col 46}   P>|z|{col 55}    [95% Conf. Interval]
+{col 1}{text}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{space 10}a1 {c |}{col 14}{result}{space 2}  .060407{col 26}{space 2}  .028443{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 55}{space 3} .0046597{col 67}{space 3} .1161543
+{txt}{space 10}a2 {c |}{col 14}{result}{space 2} .0226566{col 26}{space 2} .0217184{col 37}{space 1}    1.04{col 46}{space 3}0.297{col 55}{space 3}-.0199107{col 67}{space 3} .0652238
+{txt}{space 10}a3 {c |}{col 14}{result}{space 2}-.0073587{col 26}{space 2} .0336783{col 37}{space 1}   -0.22{col 46}{space 3}0.827{col 55}{space 3}-.0733669{col 67}{space 3} .0586496
+{txt}{space 10}a4 {c |}{col 14}{result}{space 2} .0023092{col 26}{space 2} .0309004{col 37}{space 1}    0.07{col 46}{space 3}0.940{col 55}{space 3}-.0582544{col 67}{space 3} .0628728
+{txt}{space 10}a5 {c |}{col 14}{result}{space 2} .0474307{col 26}{space 2} .0288174{col 37}{space 1}    1.65{col 46}{space 3}0.100{col 55}{space 3}-.0090502{col 67}{space 3} .1039117
+{txt}{space 10}a6 {c |}{col 14}{result}{space 2}-.0122919{col 26}{space 2} .0280146{col 37}{space 1}   -0.44{col 46}{space 3}0.661{col 55}{space 3}-.0671994{col 67}{space 3} .0426156
+{txt}{space 10}a7 {c |}{col 14}{result}{space 2}-.0112988{col 26}{space 2} .0263395{col 37}{space 1}   -0.43{col 46}{space 3}0.668{col 55}{space 3}-.0629232{col 67}{space 3} .0403257
+{txt}{space 10}a8 {c |}{col 14}{result}{space 2} .0337559{col 26}{space 2} .0189188{col 37}{space 1}    1.78{col 46}{space 3}0.074{col 55}{space 3}-.0033243{col 67}{space 3} .0708361
+{txt}{space 10}a9 {c |}{col 14}{result}{space 2} -.039885{col 26}{space 2}  .019011{col 37}{space 1}   -2.10{col 46}{space 3}0.036{col 55}{space 3}-.0771459{col 67}{space 3}-.0026241
+{txt}{space 9}a10 {c |}{col 14}{result}{space 2} -.020329{col 26}{space 2} .0252253{col 37}{space 1}   -0.81{col 46}{space 3}0.420{col 55}{space 3}-.0697697{col 67}{space 3} .0291116
+{txt}{space 9}a11 {c |}{col 14}{result}{space 2} .0108329{col 26}{space 2} .0305624{col 37}{space 1}    0.35{col 46}{space 3}0.723{col 55}{space 3}-.0490683{col 67}{space 3} .0707342
+{txt}{space 9}a12 {c |}{col 14}{result}{space 2}-.0437813{col 26}{space 2} .0429259{col 37}{space 1}   -1.02{col 46}{space 3}0.308{col 55}{space 3}-.1279146{col 67}{space 3} .0403519
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\PCA-07\Desktop\230530-201611826.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}30 May 2023, 16:11:27
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

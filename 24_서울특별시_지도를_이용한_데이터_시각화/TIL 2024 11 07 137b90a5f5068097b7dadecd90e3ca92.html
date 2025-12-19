@@ -1,0 +1,984 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>TIL 2024.11.07</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="137b90a5-f506-8097-b7da-decd90e3ca92" class="page sans"><header><h1 class="page-title" dir="auto">TIL 2024.11.07</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="137b90a5-f506-80fa-bb86-c567c257f694" class="">서울시 지도를 이용한 데이터 시각화 백업<br/>+GitHub와 embed를 이용해 notion에 html 파일 첨부하기</p></div><div style="display:contents" dir="auto"><ul id="137b90a5-f506-8038-9aaa-dc9525de8108" class="bulleted-list"><li style="list-style-type:disc">시군구/읍면동 경계 데이터 출처: <a href="http://www.gisdeveloper.co.kr/?p=2332">http://www.gisdeveloper.co.kr/?p=2332</a>(데이터 다운로드 후 json 파일로 변환함)</li></ul></div><div style="display:contents" dir="auto"><ul id="137b90a5-f506-80e9-b902-d10cd8441d0f" class="bulleted-list"><li style="list-style-type:disc">지하철역 좌표 데이터 출처: <a href="https://www.data.go.kr/data/15099316/fileData.do?recommendDataYn=Y#layer_data_infomation">https://www.data.go.kr/data/15099316/fileData.do?recommendDataYn=Y#layer_data_infomation</a></li></ul></div><div style="display:contents" dir="auto"><ul id="137b90a5-f506-80ca-86da-da07c4830e49" class="bulleted-list"><li style="list-style-type:disc">서울시 병의원 위치 정보 출처: <a href="https://data.seoul.go.kr/dataList/OA-20337/S/1/datasetView.do">https://data.seoul.go.kr/dataList/OA-20337/S/1/datasetView.do</a></li></ul></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="137b90a5-f506-8085-9eab-eb2c595c0eab" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">#데이터 분석 전 사전 준비
+
+#jupyter에는 설치되어 있지 않은 패키지들 설치
+pip install folium
+pip install geopandas pandas
+
+#필요한 패키지 장착하기
+import json                 #지도 좌표가 적힌 json 파일을 처리하기 위한 패키지
+import folium               #지도를 그려주는 패키지
+import pandas as pd
+import geopandas as gpd     #pandas 패키지를 기반으로 한 공간 데이터 처리용 패키지
+import numpy as np
+
+#시군구 지도(sig.json) 파일 불러오기
+geo_sig=gpd.read_file(&#x27;sig.json&#x27;)                               
+#전국 시군구 경계 지도 데이터 불러오기
+geo_sig=geo_sig[geo_sig[&#x27;SIG_CD&#x27;].astype(int).between(11110,11740)]            
+#그 중에서 서울 데이터만 남기기
+
+#읍면동 지도(emd.json) 파일 불러오기
+geo_emd=gpd.read_file(&#x27;emd.json&#x27;)                               
+#전국 읍면동 경계 지도 데이터 불러오기
+geo_emd=geo_emd[geo_emd[&#x27;EMD_CD&#x27;].astype(int).between(11110101,11740110)]            
+#그 중에서 서울 데이터만 남기기	
+geo_emd[&#x27;AREA_CODE&#x27;]=geo_emd[&#x27;EMD_CD&#x27;].map(str)+&quot;00&quot;            
+#법정동 코드 컬럼명 10자리로 통일하기
+geo_emd[&#x27;SIG_CD&#x27;]=geo_emd[&#x27;EMD_CD&#x27;].str[:5].map(str)           
+#EMD_CD에서 시군구 코드 추출하기
+geo_emd=geo_emd[[&#x27;SIG_CD&#x27;,&#x27;EMD_CD&#x27;,&#x27;AREA_CODE&#x27;,&#x27;EMD_ENG_NM&#x27;,&#x27;EMD_KOR_NM&#x27;,&#x27;geometry&#x27;]] 
+#컬럼 순서 정렬
+geo_emd_json=geo_emd.to_json()</code></pre></div><div style="display:contents" dir="auto"><h3 id="137b90a5-f506-809c-8a1d-c3fca921e4eb" class="">1번 고객(4인 가족, 좋은 학군이 있는 곳)이 원하는 이사 지역 지도에 표시하기</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="137b90a5-f506-8091-b55a-fa15dc03252e" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">target_areas1 = {
+&#x27;강남구&#x27;: [&#x27;개포동&#x27;, &#x27;대치동&#x27;, &#x27;도곡동&#x27;, &#x27;삼성동&#x27;, &#x27;역삼동&#x27;, &#x27;일원동&#x27;, &#x27;청담동&#x27;],
+&#x27;광진구&#x27;: [&#x27;중곡동&#x27;],
+&#x27;도봉구&#x27;: [&#x27;쌍문동&#x27;],
+&#x27;서초구&#x27;: [&#x27;반포동&#x27;, &#x27;방배동&#x27;, &#x27;서초동&#x27;],
+&#x27;성북구&#x27;: [&#x27;정릉동&#x27;],
+&#x27;송파구&#x27;: [&#x27;방이동&#x27;],
+&#x27;양천구&#x27;: [&#x27;목동&#x27;]
+}
+
+target_areas1_value=sum(target_areas1.values(),[])
+target_areas1_data=geo_emd[geo_emd[&#x27;EMD_KOR_NM&#x27;].isin(list(target_areas1_value))].reset_index(drop=True)
+#target_areas1의 value값을 1차원 리스트로 만들기-&gt;geo_emd(읍면동) 파일 내 일치하는 구역 찾기
+target_areas1_data[&#x27;COLOR_CODE&#x27;]=1
+#칼럼 COLOR_CODE를 생성-&gt;숫자 일괄 부여(같은 조건에 해당하는 지역은 같은 색깔로 통일해서 색칠)
+#folium.Choropleth 함수를 사용하려면 숫자형 데이터가 필요해서 변환함(명목형 데이터 사용 불가)
+
+map_target1=folium.Map(location=[37.56,127],      #서울 좌표
+											 zoom_start=12,             #크기 설정
+											 tiles=&#x27;cartodbpositron&#x27;)  #불러올 지도 종류 고름
+#읍면동 데이터를 바탕으로 서울 지도 가져온 후 map_target1에 저장함
+
+folium.Choropleth(geo_data=geo_emd_json,        #지도 데이터
+									data=target_areas1_data,      #지도에 표시할 데이터
+									columns=[&#x27;AREA_CODE&#x27;, &#x27;COLOR_CODE&#x27;],
+									key_on=&#x27;feature.properties.AREA_CODE&#x27;,
+									fill_color=&#x27;PuBu&#x27;,            #해당하는 지역은 PuBu 계열로 칠함
+									nan_fill_color=&#x27;white&#x27;,       #해당하지 않는 지역은 하얀색으로 덮음
+									fill_opacity=0.5,             #투명도 조절(보다 연하게)
+									line_opacity=0.2,             #지도의 선 굵기 조절
+									).add_to(map_target1)
+###지도에서 공인중개사 측에서 추린 지역을 지도 map_target1에 덮어씌움
+
+gogeak1_area=gogeak1_df[[&#x27;자치구코드&#x27;, &#x27;법정동코드&#x27;, &#x27;자치구명&#x27;, &#x27;법정동명&#x27;]]                         
+gogeak1_area[&#x27;AREA_CODE&#x27;]=gogeak1_area[&#x27;자치구코드&#x27;].map(str)+gogeak1_area[&#x27;법정동코드&#x27;].map(str)
+gogeak1_areas_data=geo_emd[geo_emd[&#x27;EMD_KOR_NM&#x27;].isin(gogeak1_area[&#x27;법정동명&#x27;])].reset_index(drop=True)
+#고객을 위해 추천하는 지역 데이터프레임 정보
+gogeak1_areas_data[&#x27;COLOR_CODE&#x27;]=5
+#이후 지도 데이터에서 해당하는 지역에 색을 입히기 위해 임의로 코드 부여
+
+folium.Choropleth(geo_data=geo_emd_json,        #지도 데이터
+									data=gogeak1_areas_data,      #지도에 표시할 데이터
+									columns=[&#x27;AREA_CODE&#x27;, &#x27;COLOR_CODE&#x27;],
+									key_on=&#x27;feature.properties.AREA_CODE&#x27;,
+									fill_color=&#x27;PuBu&#x27;,            #해당하는 지역은 PuBu 계열로 칠함
+									nan_fill_color=&#x27;white&#x27;,       #해당하지 않는 지역은 하얀색으로 덮음
+									fill_opacity=0.7,             #투명도 조절(보다 진하게)
+									line_opacity=0.2,             #지도의 선 굵기 조절
+								  ).add_to(map_target1)         
+#앞에 저장된 map_target1 지도에 고객 1이 원하는 조건에 부합하는 지역이 표시된 지도 결합
+
+folium.Choropleth(geo_data=geo_sig,
+									fill_opacity=0,
+									line_weight=1
+									).add_to(map_target1)         
+#시군구 경계선을 불러와서 map_target1에 덮어쓰기
+#지도에 나타나는 선 굵기가 다름---&gt;마지막에 불러와야 함.
+
+map_target1       #결과 지도 출력
+#옅은색(하늘색) 구역: 공인중개사 쪽이 추려낸 학군이 좋은 지역
+#진한색(파란색) 구역: 앞 조건(학군이 좋은 지역)에 부합하면서 고객이 제시한 조건에도 맞는 지역</code></pre></div><div style="display:contents" dir="ltr"><figure id="137b90a5-f506-80c2-8d7f-dda658ccf9cb"><div class="source"><a href="https://jsy1558.github.io/html_p/map_target1_241107.html">https://jsy1558.github.io/html_p/map_target1_241107.html</a></div></figure></div><div style="display:contents" dir="auto"><h3 id="137b90a5-f506-8002-8ba6-f1a04ca27207" class="">2번 고객(강남 소재 직장, 출장 잦음, 오피스텔, 1인 가구)이 원하는 지역 표시하기</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="137b90a5-f506-8006-9b54-d6f8d9c4de7d" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">target_areas2 = {
+&#x27;용산구&#x27;: [&#x27;동자동&#x27;, &#x27;청파동1가&#x27;, &#x27;청파동2가&#x27;, &#x27;청파동3가&#x27;, &#x27;남영동&#x27;],
+&#x27;중구&#x27;: [&#x27;중림동&#x27;,&#x27;만리동1가&#x27;, &#x27;만리동2가&#x27;, &#x27;소공동&#x27;],
+&#x27;서초구&#x27;: [&#x27;서초동&#x27;],
+&#x27;강남구&#x27;: [&#x27;역삼동&#x27;],
+&#x27;동작구&#x27;: [&#x27;사당동&#x27;, &#x27;동작동&#x27;],
+&#x27;송파구&#x27;: [&#x27;잠실동&#x27;, &#x27;석촌동&#x27;, &#x27;신천동&#x27;, &#x27;삼전동&#x27;, &#x27;송파동&#x27;],
+&#x27;종로구&#x27;: [&#x27;돈의동&#x27;, &#x27;봉익동&#x27;, &#x27;장사동&#x27;, &#x27;관수동&#x27;, &#x27;낙원동&#x27;, &#x27;인사동&#x27;]
+}   #지역 추가되면서 조건에 부합하는 지역도 좀 더 늘어난 것 같음?
+
+target_areas2_value=sum(target_areas2.values(),[])
+target_areas2_data=geo_emd[geo_emd[&#x27;EMD_KOR_NM&#x27;].isin(list(target_areas2_value))].reset_index(drop=True)
+#target_areas2의 value값을 1차원 리스트로 만들기-&gt;geo_emd(읍면동) 파일 내 일치하는 구역 찾기
+target_areas2_data[&#x27;COLOR_CODE&#x27;]=1
+#칼럼 COLOR_CODE를 생성-&gt;숫자 일괄 부여(같은 색깔로 칠할 것임)
+#folium.Choropleth 함수를 사용하려면 숫자형 데이터가 필요해서 변환함(명목형 데이터 사용 불가)
+
+map_target2=folium.Map(location=[37.56,127],    #서울 좌표
+											 zoom_start=12,             #크기 설정
+											 tiles=&#x27;cartodbpositron&#x27;)   #서울 배경 지도 가져오기
+											 
+folium.Choropleth(geo_data=geo_emd_json,        #지도 데이터
+									data=target_areas2_data,      #지도에 표시할 데이터
+									columns=[&#x27;AREA_CODE&#x27;, &#x27;COLOR_CODE&#x27;],
+									key_on=&#x27;feature.properties.AREA_CODE&#x27;,
+									fill_color=&#x27;Spectral&#x27;,
+									nan_fill_color=&#x27;white&#x27;,
+									fill_opacity=0.5,
+									line_opacity=0.2,
+									).add_to(map_target2)
+###지도에서 공인중개사 측에서 추린 지역을 표시함
+
+gogeak2_area=gogeak2_df[[&#x27;자치구코드&#x27;, &#x27;법정동코드&#x27;, &#x27;자치구명&#x27;, &#x27;법정동명&#x27;]]                         #gogeak2_area=고객을 위해 추천하는 지역
+gogeak2_area[&#x27;AREA_CODE&#x27;]=gogeak2_area[&#x27;자치구코드&#x27;].map(str)+gogeak2_area[&#x27;법정동코드&#x27;].map(str)
+gogeak2_areas_data=geo_emd[geo_emd[&#x27;EMD_KOR_NM&#x27;].isin(gogeak2_area[&#x27;법정동명&#x27;])].reset_index(drop=True)
+gogeak2_areas_data[&#x27;COLOR_CODE&#x27;]=5
+
+folium.Choropleth(geo_data=geo_emd_json,       #지도 데이터
+									data=gogeak2_areas_data,     #지도에 표시할 데이터(조건에 부합하는 지역)
+									columns=[&#x27;AREA_CODE&#x27;, &#x27;COLOR_CODE&#x27;],
+									key_on=&#x27;feature.properties.AREA_CODE&#x27;,
+									fill_color=&#x27;Spectral&#x27;,
+									nan_fill_color=&#x27;white&#x27;,
+									fill_opacity=0.7,
+									line_opacity=0.2,
+									).add_to(map_target2)         
+##앞에 저장된 map_target2 지도에 고객 2가 원하는 조건에 부합하는 지역이 표시된 지도 결합
+
+folium.Choropleth(geo_data=geo_sig,
+								  fill_opacity=0,
+								  line_weight=1
+								  ).add_to(map_target2)        #시군구 경계선을 불러와서 지도에 덮어쓰기
+								  
+#강남역 마커
+folium.Marker(location=[37.497958, 127.027539],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;강남역&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-train-subway&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target2)
+							
+#서울역 마커
+folium.Marker(location=[37.553172, 126.972836],
+						  tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;서울역&lt;/b&gt;&#x27;),
+						  icon=folium.Icon(icon=&#x27;fa-train-subway&#x27;, prefix=&#x27;fa&#x27;)
+						  ).add_to(map_target2)
+						  
+#사당역 마커
+folium.Marker(location=[37.476536, 126.981631],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;사당역&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-train-subway&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target2)
+#잠실역 마커
+folium.Marker(location=[37.513305, 127.100129],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;잠실역&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-train-subway&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target2)
+
+#종로3가역 마커
+folium.Marker(location=[37.570429, 126.992095],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;종로3가역&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-train-subway&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target2)
+
+map_target2       #결과 지도 출력
+#옅은색 구역: 공인중개사 쪽이 추려낸 지역
+#진한색 구역: 앞 조건에 부합하면서 고객이 제시한 조건에도 맞는 지역</code></pre></div><div style="display:contents" dir="ltr"><figure id="137b90a5-f506-809e-b326-cfd2544c9201"><div class="source"><a href="https://jsy1558.github.io/html_p/map_target2_241107.html">https://jsy1558.github.io/html_p/map_target2_241107.html</a></div></figure></div><div style="display:contents" dir="auto"><h3 id="137b90a5-f506-8088-a1c1-eb2718ecad82" class="">3번 고객(대학 병원, 인프라, 노인)</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="137b90a5-f506-80c6-8d19-e8f8f1cd5151" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">target_areas3={
+&#x27;종로구&#x27;: [&#x27;연건동&#x27;, &#x27;혜화동&#x27;, &#x27;명륜4가&#x27;],
+&#x27;서대문구&#x27;: [&#x27;신촌동&#x27;,&#x27;대신동&#x27;,&#x27;대현동&#x27;,&#x27;창천동&#x27;],
+&#x27;성북구&#x27;: [&#x27;안암동1가&#x27;, &#x27;안암동2가&#x27;, &#x27;안암동3가&#x27;, &#x27;안암동4가&#x27;, &#x27;안암동5가&#x27;, &#x27;보문동1가&#x27;, &#x27;보문동2가&#x27;, &#x27;보문동3가&#x27;, &#x27;보문동4가&#x27;, &#x27;보문동5가&#x27;, &#x27;보문동6가&#x27;, &#x27;보문동7가&#x27;,&#x27;동선동1가&#x27;, &#x27;동선동2가&#x27;, &#x27;동선동3가&#x27;, &#x27;동선동4가&#x27;, &#x27;동선동5가&#x27;, &#x27;종암동&#x27;],
+&#x27;동대문구&#x27;: [&#x27;제기동&#x27;],
+&#x27;성동구&#x27;: [&#x27;사근동&#x27;,&#x27;행당동&#x27;,&#x27;마장동&#x27;,&#x27;도선동&#x27;],
+&#x27;서초구&#x27;: [&#x27;반포동&#x27;,&#x27;서초동&#x27;,&#x27;잠원동&#x27;,&#x27;방배동&#x27;],
+&#x27;송파구&#x27;: [&#x27;풍납동&#x27;, &#x27;신천동&#x27;],
+&#x27;강남구&#x27;: [&#x27;일원동&#x27;, &#x27;수서동&#x27;]
+}
+
+target_areas3_value=sum(target_areas3.values(),[])
+target_areas3_data=geo_emd[geo_emd[&#x27;EMD_KOR_NM&#x27;].isin(list(target_areas3_value))].reset_index(drop=True)
+#target_areas2의 value값을 1차원 리스트로 만들기-&gt;geo_emd(읍면동) 파일 내 일치하는 구역 찾기
+target_areas3_data[&#x27;COLOR_CODE&#x27;]=1
+#칼럼 COLOR_CODE를 생성-&gt;숫자 일괄 부여(같은 색깔로 칠할 것임)
+#folium.Choropleth 함수를 사용하려면 숫자형 데이터가 필요해서 변환함(명목형 데이터 사용 불가)
+
+map_target3=folium.Map(location=[37.56,127],      #서울 좌표
+											 zoom_start=12,             #크기 설정
+											 tiles=&#x27;cartodbpositron&#x27;)   #서울 배경 지도 가져오기
+
+folium.Choropleth(geo_data=geo_emd_json,        #지도 데이터
+									data=target_areas3_data,      #지도에 표시할 데이터
+									columns=[&#x27;AREA_CODE&#x27;, &#x27;COLOR_CODE&#x27;],
+									key_on=&#x27;feature.properties.AREA_CODE&#x27;,
+									fill_color=&#x27;GnBu&#x27;,
+									nan_fill_color=&#x27;white&#x27;,
+									fill_opacity=0.5,
+									line_opacity=0.2,
+									).add_to(map_target3)
+###지도에서 공인중개사 측에서 추린 지역을 옅은 색으로 표시함
+
+gogeak3_area=gogeak3_df[[&#x27;자치구코드&#x27;, &#x27;법정동코드&#x27;, &#x27;자치구명&#x27;, &#x27;법정동명&#x27;]]                         #고객을 위해 추천하는 지역
+gogeak3_area[&#x27;AREA_CODE&#x27;]=gogeak3_area[&#x27;자치구코드&#x27;].map(str)+gogeak3_area[&#x27;법정동코드&#x27;].map(str)
+gogeak3_areas_data=geo_emd[geo_emd[&#x27;EMD_KOR_NM&#x27;].isin(gogeak3_area[&#x27;법정동명&#x27;])].reset_index(drop=True)
+gogeak3_areas_data[&#x27;COLOR_CODE&#x27;]=5
+
+folium.Choropleth(geo_data=geo_emd_json,  #지도 데이터
+								data=gogeak3_areas_data,  #지도에 표시할 데이터(조건에 부합하는 지역 표시)
+								columns=[&#x27;AREA_CODE&#x27;, &#x27;COLOR_CODE&#x27;],
+								key_on=&#x27;feature.properties.AREA_CODE&#x27;,
+								fill_color=&#x27;GnBu&#x27;,
+								nan_fill_color=&#x27;white&#x27;,
+								fill_opacity=0.7,
+								line_opacity=0.2,
+								).add_to(map_target3)         
+	##앞에 저장된 map_target3 지도에 고객 3이 원하는 조건에 부합하는 지역이 표시된 지도 결합
+	
+	folium.Choropleth(geo_data=geo_sig,
+										fill_opacity=0,
+										line_weight=1
+										).add_to(map_target3)        #시군구 경계선을 불러와서 지도에 덮어쓰기
+										
+#서울성모병원 마커
+folium.Marker(location=[37.5018008, 127.0047273],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;가톨릭대학교 서울성모병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+#서울대학교병원 마커
+folium.Marker(location=[37.57966609, 126.9989631],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;서울대학교병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+
+#연세대학교 세브란스병원 마커
+folium.Marker(location=[37.56211711, 126.9408277],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;연세대학교 세브란스병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+							
+#서울아산병원 마커
+folium.Marker(location=[37.52656397, 127.1082383],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;서울아산병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+							
+#삼성서울병원 마커
+folium.Marker(location=[37.48851613, 127.0866825],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;삼성서울병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+
+#고려대학교 안암병원 마커
+folium.Marker(location=[37.58715608, 127.0264709],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;고려대학교 안암병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+
+#한양대학교병원 마커
+folium.Marker(location=[37.55994453,127.0448828],
+							tooltip=folium.Tooltip(permanent=True,text=&#x27;&lt;b&gt;한양대학교병원&lt;/b&gt;&#x27;),
+							icon=folium.Icon(icon=&#x27;fa-hospital&#x27;, prefix=&#x27;fa&#x27;)
+							).add_to(map_target3)
+
+map_target3       #결과 지도 출력
+#옅은색 구역: 공인중개사 쪽이 후보군으로 추려낸 지역
+#진한색 구역: 앞 조건에 부합하면서 고객이 제시한 조건에도 맞는 지역</code></pre></div><div style="display:contents" dir="ltr"><figure id="137b90a5-f506-8068-ab6f-cd0ec8d194ac"><div class="source"><a href="https://jsy1558.github.io/html_p/map_target3_241107.html">https://jsy1558.github.io/html_p/map_target3_241107.html</a></div></figure></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
